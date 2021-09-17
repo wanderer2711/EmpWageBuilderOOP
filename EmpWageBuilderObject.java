@@ -3,6 +3,7 @@ public class EmpWageBuilderObjectUC2 {
 
     public static void main (String[] args) {
         int IS_FULL_TIME = 1;
+        int IS_PART_TIME = 2
         int EMP_RATE_PER_HOUR = 20;
 
         int empHrs = 0;
@@ -12,7 +13,7 @@ public class EmpWageBuilderObjectUC2 {
         if (empCheck == IS_FULL_TIME) {
             empHrs = 8
         } else {
-            empHrs = 0;
+            empHrs = 4;
         }
         empWage = empHrs * EMP_RATE_PER_HOUR;
         System.out.println("Employee Wage: " + empWage);
