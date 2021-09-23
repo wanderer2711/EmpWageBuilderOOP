@@ -1,16 +1,27 @@
 public class EmpWageBuilderObject {
+    public static final int IS_FULL_TIME = 1;
+    public static final int IS_PART_TIME = 2;
 
+    private final String company;
+    private final int empRatePerHour;
+    private final int numOfWorkingDays;
+    private final int maxHoursPerMonth;
 
-    public static void main (String[] args) {
-        int IS_FULL_TIME = 1;
-        int IS_PART_TIME = 2;
-        int EMP_RATE_PER_HOUR = 20;
-        int TOTAL_WORKING_DAYS = 20;
+    public EmpWageBuilderObject (String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+        this.company =company;
+        this.empRatePerHour = empRatePerHour;
+        this.numOfWorkingDays = numOfWorkingDays;
+        this.maxHoursPerMonth = maxHoursPerMonth;
+    }
 
-        int empHrs = 0;
-        int empWage = 0, totalEmpWage = 0;
-        int empCheck = (int) Math.floor(Math.random() * 10) % 2;
-        for (int day = 0; day < TOTAL_WORKING_DAYS; day++) {
+    public static void main (String[] args){
+        EmpWageBuilderObject dMart = new EmpWageBuilderObject("Dmart", 20, 2, 10);
+
+        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+
+        while (totalEmpHrs <= dMart.maxHoursPerMonth && totalWorkingDays <= dMart.numOfWorkingDays) {
+            totalWorkingDays ++;
+            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
             switch (empCheck) {
                 case IS_FULL_TIME:
                     empHrs = 8;
@@ -21,11 +32,11 @@ public class EmpWageBuilderObject {
                 default:
                     empHrs = 0;
             }
-            empWage = empHrs * EMP_RATE_PER_HOUR;
-            totalEmpWage += empWage;
-            System.out.println("Emp Wage: " + empWage);
+            totalEmpHrs += empHrs;
+            System.out.println("Day#: " + totalWorkingDays + " Emp Hr: " + empHrs);
         }
-        empWage = empHrs * EMP_RATE_PER_HOUR * TOTAL_WORKING_DAYS;
-        System.out.println("Total Employee Wage: " + totalEmpWage);
+        int totalEmpWage = totalEmpHrs * dMart.empRatePerHour;
+        System.out.println("Total Employee Wage for : " + totalEmpWage);
     }
+
 }
